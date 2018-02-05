@@ -28,6 +28,8 @@ sudo pacman -S imagemagick git
 git clone https://github.com/ragon000/bum-urxvt/
 cd bum-urxvt
 pip3 install --user .
+cd ..
+rm -rf bum-urxvt
 ```
 ### Ubuntu/Debian
 ```sh
@@ -35,6 +37,8 @@ sudo apt-get install imagemagick git
 git clone https://github.com/ragon000/bum-urxvt/
 cd bum-urxvt
 pip3 install --user .
+cd ..
+rm -rf bum-urxvt
 ```
 
 ## Usage
