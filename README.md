@@ -21,7 +21,8 @@ Note: `bum-urxvt` is meant to be used with files that don't have embedded album 
 - `ImageMagick` - Can be removed by deleting a line in `change.sh`
 
 ## Installation
-
+You need urxvt compiled with pixbuf
+On Arch it's in the [AUR](https://aur.archlinux.org/packages/rxvt-unicode-pixbuf/)
 ### Arch
 ```sh
 sudo pacman -S imagemagick git
