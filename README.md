@@ -1,15 +1,12 @@
-# 🎵 bum
+# 🎵 bum-urxvt
 
-[![PyPI](https://img.shields.io/pypi/v/bum.svg)](https://pypi.python.org/pypi/bum/)
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE.md)
-[![Build Status](https://travis-ci.org/dylanaraps/bum.svg?branch=master)](https://travis-ci.org/dylanaraps/bum)
-[![Donate](https://img.shields.io/badge/donate-patreon-yellow.svg)](https://www.patreon.com/dyla)
 
-`bum` is a daemon that downloads album art for songs playing in `mpd`/`mopidy` and displays them in a little window. `bum` doesn't loop on a timer, instead it waits for `mpd`/`mopidy` to send a `player` event. When it receives a `player` event it wakes up and downloads album art for the current playing track. This makes `bum` lightweight and makes it idle at `~0%` CPU usage.
+`bum-urxvt` is a daemon that downloads album art for songs playing in `mpd`/`mopidy` and displays them as the background image of the `urxvt` terminal window it was started in. `bum-urxvt` doesn't loop on a timer, instead it waits for `mpd`/`mopidy` to send a `player` event. When it receives a `player` event it wakes up and downloads album art for the current playing track. This makes `bum-urxvt` lightweight and makes it idle at `~0%` CPU usage.
 
-`bum` uses [musicbrainz](https://musicbrainz.org/) to source and download cover art, if an album is missing it's cover art you can easily create an account and fill in the data yourself. `bum` outputs a `release-id` which you can use to find the exact entry on musicbrainz.
+`bum-urxvt` uses [musicbrainz](https://musicbrainz.org/) to source and download cover art, if an album is missing it's cover art you can easily create an account and fill in the data yourself. `bum-urxvt` outputs a `release-id` which you can use to find the exact entry on musicbrainz.
 
-Note: `bum` is meant to be used with files that don't have embedded album art (`mopidy-spotify`).
+Note: `bum-urxvt` is meant to be used with files that don't have embedded album art (`mopidy-spotify`).
 
 
 ![showcase](http://i.imgur.com/uKomDoL.gif)
@@ -21,14 +18,24 @@ Note: `bum` is meant to be used with files that don't have embedded album art (`
 - `python-mpv`
 - `python-mpd2`
 - `musicbrainzngs`
-
+- `ImageMagick` - Can be removed by deleting a line in `change.sh`
 
 ## Installation
 
+###Arch
 ```sh
-pip3 install --user bum
+sudo pacman -S imagemagick git
+git clone https://github.com/ragon000/bum-urxvt/
+cd bum-urxvt
+pip3 install --user .
 ```
-
+###Ubuntu/Debian
+```sh
+sudo apt-get install imagemagick git
+git clone https://github.com/ragon000/bum-urxvt/
+cd bum-urxvt
+pip3 install --user .
+```
 
 ## Usage
 
