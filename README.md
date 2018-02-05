@@ -9,8 +9,8 @@
 Note: `bum-urxvt` is meant to be used with files that don't have embedded album art (`mopidy-spotify`).
 
 
-![showcase](http://i.imgur.com/uKomDoL.gif)
-
+![showcase](https://i.imgur.com/e9wFZyz.gif)
+> The artifacts are only in the video
 
 ## Dependencies
 
