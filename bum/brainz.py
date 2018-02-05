@@ -2,7 +2,8 @@
 Musicbrainz related functions.
 """
 import musicbrainzngs as mus
-
+from pathlib import Path
+import os
 from .__init__ import __version__
 
 
@@ -30,3 +31,4 @@ def get_cover(song, size=250):
     except mus.ResponseError:
         print("error: Couldn't find album art for",
               f"{song['artist']} - {song['album']}")
+        os.system(str(Path(__file__).resolve().parent)+"/change.sh")

@@ -9,8 +9,8 @@ Created by Dylan Araps
 """
 import argparse
 import pathlib
-
-from . import display
+from pathlib import Path
+import os
 from . import song
 
 from .__init__ import __version__
@@ -51,13 +51,12 @@ def main():
     """Main script function."""
     args = get_args()
     process_args(args)
-
-    disp = display.init(args.size)
+    
     client = song.init(args.port)
 
     while True:
         song.get_art(args.cache_dir, args.size, client)
-        display.launch(disp, args.cache_dir / "current.jpg")
+        os.system(str(Path(__file__).resolve().parent)+"/change.sh " + str(args.cache_dir.resolve()) + "/current.jpg")
         client.send_idle()
 
         if client.fetch_idle(["player"]):
