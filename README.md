@@ -58,9 +58,9 @@ optional arguments:
 ```
 
 
-## Donate
+## Donate to the creator of bum
 
-Donations will allow me to spend more time working on `bum`.
+Donations will allow him to spend more time working on `bum`.
 
 If you like `bum` and want to give back in some way you can donate here:
 
