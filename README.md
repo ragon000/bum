@@ -4,7 +4,7 @@
 
 `bum-urxvt` is a daemon that downloads album art for songs playing in `mpd`/`mopidy` and displays them as the background image of the `urxvt` terminal window it was started in. `bum-urxvt` doesn't loop on a timer, instead it waits for `mpd`/`mopidy` to send a `player` event. When it receives a `player` event it wakes up and downloads album art for the current playing track. This makes `bum-urxvt` lightweight and makes it idle at `~0%` CPU usage.
 
-`bum-urxvt` uses [musicbrainz](https://musicbrainz.org/) to source and download cover art, if an album is missing it's cover art you can easily create an account and fill in the data yourself. `bum-urxvt` outputs a `release-id` which you can use to find the exact entry on musicbrainz.
+`bum-urxvt` uses [musicbrainz](https://musicbrainz.org/) to source and download cover art, if an album is missing it's cover art you can easily create an account and fill in the data yourself. `bum-urxvt` outputs (when the verbose option is set) a `release-id` which you can use to find the exact entry on musicbrainz.
 
 Note: `bum-urxvt` is meant to be used with files that don't have embedded album art (`mopidy-spotify`).
 
@@ -46,16 +46,19 @@ rm -rf bum-urxvt
 
 ```sh
 usage: bum [-h] [--size "px"] [--cache_dir "/path/to/dir"] [--version]
+           [--port PORT] [--verbose]
 
-bum - Download and display album art for mpd tracks.
+bum-urxvt - Download and display album art for mpd tracks in your terminal.
 
 optional arguments:
   -h, --help            show this help message and exit
   --size "px"           what size to display the album art in.
   --cache_dir "/path/to/dir"
-                        Where to store the downloaded cover art.
+                        Where to store the downloaded cover art. (Defaults to
+                        ~/.cache/bum
   --version             Print "bum" version.
-  --port                Use a custom mpd port.
+  --port PORT           Use a custom mpd port.
+  --verbose             Turn on song informations
 ```
 
 
