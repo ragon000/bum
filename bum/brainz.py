@@ -14,14 +14,14 @@ def init():
                       "https://github.com/dylanaraps/bum")
 
 
-def get_cover(song, size=250):
+def get_cover(song, verbose, size=250):
     """Download the cover art."""
     try:
         data = mus.search_releases(artist=song["artist"],
                                    release=song["album"],
                                    limit=1)
         release_id = data["release-list"][0]["release-group"]["id"]
-        print(f"album: Using release-id: {data['release-list'][0]['id']}")
+        if(verbose): print(f"album: Using release-id: {data['release-list'][0]['id']}")
 
         return mus.get_release_group_image_front(release_id, size=size)
 
@@ -29,6 +29,6 @@ def get_cover(song, size=250):
         get_cover(song, size)
 
     except mus.ResponseError:
-        print("error: Couldn't find album art for",
+        if(verbose): print("error: Couldn't find album art for",
               f"{song['artist']} - {song['album']}")
         os.system(str(Path(__file__).resolve().parent)+"/change.sh")

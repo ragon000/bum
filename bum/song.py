@@ -22,12 +22,12 @@ def init(port=6600):
         os._exit(1)  # pylint: disable=W0212
 
 
-def get_art(cache_dir, size, client):
+def get_art(cache_dir, size, client, verbose):
     """Get the album art."""
     song = client.currentsong()
 
     if len(song) < 2:
-        print("album: Nothing currently playing.")
+        if(verbose): print("album: Nothing currently playing.")
         return
 
     file_name = f"{song['artist']}_{song['album']}_{size}.jpg".replace("/", "")
@@ -35,16 +35,16 @@ def get_art(cache_dir, size, client):
 
     if file_name.is_file():
         shutil.copy(file_name, cache_dir / "current.jpg")
-        print("album: Found cached art.")
+        if(verbose): print("album: Found cached art.")
 
     else:
-        print("album: Downloading album art...")
+        if(verbose): print("album: Downloading album art...")
 
         brainz.init()
-        album_art = brainz.get_cover(song, size)
+        album_art = brainz.get_cover(song, verbose, size)
 
         if album_art:
             util.bytes_to_file(album_art, cache_dir / file_name)
             util.bytes_to_file(album_art, cache_dir / "current.jpg")
 
-            print(f"album: Swapped art to {song['artist']}, {song['album']}.")
+            if(verbose): print(f"album: Swapped art to {song['artist']}, {song['album']}.")

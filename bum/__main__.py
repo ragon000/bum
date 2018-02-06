@@ -18,8 +18,8 @@ from .__init__ import __version__
 
 def get_args():
     """Get the script arguments."""
-    description = "bum - Download and display album art \
-                   for mpd tracks."
+    description = "bum-urxvt - Download and display album art \
+                   for mpd tracks in your terminal."
     arg = argparse.ArgumentParser(description=description)
 
     arg.add_argument("--size", metavar="\"px\"",
@@ -27,7 +27,7 @@ def get_args():
                      default=250)
 
     arg.add_argument("--cache_dir", metavar="\"/path/to/dir\"",
-                     help="Where to store the downloaded cover art.",
+                     help="Where to store the downloaded cover art. (Defaults to ~/.cache/bum",
                      default=pathlib.Path.home() / ".cache/bum")
 
     arg.add_argument("--version", action="store_true",
@@ -36,7 +36,9 @@ def get_args():
     arg.add_argument("--port",
                      help="Use a custom mpd port.",
                      default=6600)
-
+    arg.add_argument("--verbose",
+                     help="Turn on song informations",
+                     action="store_true")
     return arg.parse_args()
 
 
@@ -55,13 +57,14 @@ def main():
     client = song.init(args.port)
 
     while True:
-        song.get_art(args.cache_dir, args.size, client)
+        song.get_art(args.cache_dir, args.size, client, args.verbose)
         os.system(str(Path(__file__).resolve().parent)+"/change.sh " + str(args.cache_dir.resolve()) + "/current.jpg")
         client.send_idle()
 
         if client.fetch_idle(["player"]):
-            print("album: Received player event from mpd. Swapping cover art.")
-            continue
+          if(args.verbose):
+              print("album: Received player event from mpd. Swapping cover art.")
+          continue
 
 
 if __name__ == "__main__":
