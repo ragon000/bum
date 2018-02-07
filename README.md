@@ -9,7 +9,7 @@
 Note: `bum-urxvt` is meant to be used with files that don't have embedded album art (`mopidy-spotify`).
 
 
-![showcase](https://i.imgur.com/62OLmuT.gif)
+![showcase](https://i.imgur.com/lqNCc8I.gif)
 
 ## Dependencies
 
